@@ -1,25 +1,26 @@
 import React, {useState, useEffect} from 'react';
-import Szymon from './components/Szymon';
+import Login from './components/Login'
+import {
+  HashRouter,
+  Route,
+  Switch
+} from 'react-router-dom'
+import Homepage from './components/Homepage';
+
 
 const App = () => {
-  const [data,setData] = useState();
-  const url = 'http://localhost:5000/';
-
-  useEffect( () => {
-    fetch(url)
-    .then(res => res.json())
-    .then(json => {
-      console.log(json);
-      setData(json);
-    })
-    .catch(err => console.log(err))
-  }, [])
+  const Page = {
+    login: '/login',
+    homepage: '/'
+  }
 
   return (
-    <div>
-      Hello react
-      {data ? <Szymon name={data.name} surname={data.surname} iq={data.iq}/> : <p>Loading...</p>}
-    </div>
+    <HashRouter>
+      <Switch>
+      <Route exact path={Page.homepage} component={Homepage}/>
+      <Route path={Page.login} component={Login} />
+      </Switch>
+    </HashRouter>
   )
 }
 
