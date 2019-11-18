@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Comment = ({author, comment, score}) => {
     return (
         <div>
-            Author:1 {author} | 
+            Author: {author} | 
             <p>{comment}</p> + {score}
         </div>
     )
