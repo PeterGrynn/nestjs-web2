@@ -1,26 +1,29 @@
 import React, {useState, useEffect} from 'react';
 import Login from './components/Login'
 import {
-  HashRouter,
+  BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom'
 import Homepage from './components/Homepage';
+import MemPage from './components/MemPage';
 
 
 const App = () => {
   const Page = {
     login: '/login',
-    homepage: '/'
+    homepage: '/',
+    mem: '/:id'
   }
 
   return (
-    <HashRouter>
+    <Router>
       <Switch>
       <Route exact path={Page.homepage} component={Homepage}/>
       <Route path={Page.login} component={Login} />
+      <Route path={Page.mem} component={MemPage} />
       </Switch>
-    </HashRouter>
+    </Router>
   )
 }
 
