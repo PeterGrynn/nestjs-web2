@@ -26,7 +26,7 @@ const MemPage = () => {
             <div>header</div>
             <div>Mem</div>
             <div>
-                <Comments length={comments.length} comments={comments}/>
+                <Comments length={comments.length} comments={comments} pageId={pageId}/>
             </div>
         </div>
     )

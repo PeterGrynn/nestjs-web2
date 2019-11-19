@@ -24,7 +24,7 @@ export class CommentsService {
 
     async score(scoreDto: ScoreDto): Promise<Comment[]> {
         const comment = await this.commentModel.findOne({_id: scoreDto.id});
-        if (scoreDto.type) { 'jhghjg'
+        if (scoreDto.type) {
             comment.score++;
         } else {
             comment.score--;
