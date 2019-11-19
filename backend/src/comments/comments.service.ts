@@ -18,8 +18,13 @@ export class CommentsService {
         return await this.commentModel.find().exec();
     }
 
-    async findOne(id: number): Promise<Comment[]> {
-        return await this.commentModel.find({id: id});
+    async findOne(id: any): Promise<Comment[]> {
+        console.log(typeof id);
+        if(id.length < 10){
+            return await this.commentModel.find({id: id});
+        } else {
+            return await this.commentModel.find({_id: id});
+        }
     }
 
     async score(scoreDto: ScoreDto): Promise<Comment[]> {

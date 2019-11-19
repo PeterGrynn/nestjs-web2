@@ -12,9 +12,10 @@ import Axios from 'axios';
 import { URL } from '../URL/serverURL';
 
 export const Comment = ({author, comment, score, id}) => {
+
     
     const handleScore = type => {
-        Axios.post( URL.score, {
+        Axios.post( `${URL.score}/${id+1}`, {
             type: type,
             id: id
         })

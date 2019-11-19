@@ -22,8 +22,9 @@ export class CommentsController {
         return this.commentsService.create(comment);
     }
 
-    @Post('score')
-    score(@Body() scoreDto: ScoreDto) {
+    @Post('score/:id')
+    score(@Body() scoreDto: ScoreDto, @Param('id') id) {
+        console.log(id);
         return this.commentsService.score(scoreDto);
     }
 
