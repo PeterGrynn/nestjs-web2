@@ -4,10 +4,6 @@ import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
 import * as compression from 'compression';
 
-const likesLimit = rateLimit({
-  windowMs: 1000 * 60 * 60 * 24,
-  max: 2,
-});
 
 
 async function bootstrap() {
@@ -15,7 +11,7 @@ async function bootstrap() {
   app.enableCors();
   app.use(helmet());
   app.use(compression());
-  app.use('/comments/score/:id', likesLimit);
+  app.use('/comments/score/:id/plus', likesLimit);
   await app.listen(5000);
 }
 bootstrap();
