@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 
-@Controller('mems')
-export class MemsController {
+@Controller('files')
+export class FilesController {
 
     @Get()
     findAllMemes(): string {
