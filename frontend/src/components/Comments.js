@@ -39,14 +39,16 @@ export const NewComment = ({pageId}) => {
     const [items, setItems] = useState([]);
 
     const addComment = () => {
-        Axios.post( URL.createComments, {
-            id: pageId,
-            author: author,
-            comment: comment,
-            score: 0
-        })
-        setItems( items => [...items, <Comment author={author} comment={comment} score={0} id={0} key={items.length}/>]);
-        setComment('');
+        if(comment){
+            Axios.post( URL.createComments, {
+                id: pageId,
+                author: author,
+                comment: comment,
+                score: 0
+            })
+            setItems( items => [...items, <Comment author={author} comment={comment} score={0} id={0} key={items.length}/>]);
+            setComment('');
+        }
     }
 
     const handleChange = el => {

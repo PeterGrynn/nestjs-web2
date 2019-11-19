@@ -13,7 +13,7 @@ const App = () => {
   const Page = {
     login: '/login',
     homepage: '/',
-    mem: '/:id'
+    mem: '/mem/:id'
   }
 
   return (

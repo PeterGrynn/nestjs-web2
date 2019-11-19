@@ -5,7 +5,7 @@ import { URL } from '../URL/serverURL';
 import Comments from './Comments';
 
 const MemPage = () => {
-    const [pageId, setPageId] = useState(createBrowserHistory().location.pathname.slice(1));
+    const [pageId, setPageId] = useState(createBrowserHistory().location.pathname.slice(5));
     const [comments, setComments] = useState('');
 
     useEffect(() => {
@@ -16,7 +16,6 @@ const MemPage = () => {
     const getComment = async (id, url) => {
         if(id){
             const { data } = await Axios.get(`${url}${id}`)
-            console.log(data.length);
             setComments(data);
         }    
     }
