@@ -1,4 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseInterceptors, UploadedFile, Post } from '@nestjs/common';
+import { FileInterceptor, AnyFilesInterceptor } from '@nestjs/platform-express';
+
 
 @Controller('files')
 export class FilesController {
@@ -8,8 +10,16 @@ export class FilesController {
         return 'All memes';
     }
 
-    @Get(':id')
-    findOneMeme(@Param('id') id): string {
-        return `Meme ID: ${id}`;
+    @Get(':from/:to')
+    findOneMeme(@Param('from') from, @Param('to') to): string {
+        return `from ${from} to ${to}`;
     }
+
+    @Post('upload')
+    @UseInterceptors(AnyFilesInterceptor())
+    uploadFile(@UploadedFile() file) {
+        console.log(file);
+        return file;
+    }
+
 }

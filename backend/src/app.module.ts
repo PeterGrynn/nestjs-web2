@@ -7,7 +7,7 @@ import { UsersModule } from './users/users.module';
 import { CommentsModule } from './comments/comments.module';
 import { FilesModule } from './files/files.module';
 import * as rateLimit from 'express-rate-limit';
-const { check, sanitize } = require('express-validator');
+
 
 const likesLimit = rateLimit({
   windowMs: 1000 * 60,
@@ -15,7 +15,7 @@ const likesLimit = rateLimit({
 });
 
 
-export const MongoConnection = MongooseModule.forRoot(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true});
+export const MongoConnection = MongooseModule.forRoot(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 
 @Module({
   imports: [MongoConnection, UsersModule, FilesModule, CommentsModule],
@@ -26,6 +26,6 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(likesLimit)
-      .forRoutes('/comments/score/*');
+      .forRoutes('/comments/score/:id');
   }
 }

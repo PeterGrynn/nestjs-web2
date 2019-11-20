@@ -1,8 +1,11 @@
 {
-    "name": "nestjs-web2",
-    "description": "a really cool app",
-    "version": "1.0.0",
-    "engines": {
-      "node": "10.15.3"
-    }
+  "name": "nestjs-web2",
+  "description": "a really cool app",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.15.3"
+  },
+  "dependencies": {
+    "mongoose-unique-validator": "^2.0.3"
   }
+}
