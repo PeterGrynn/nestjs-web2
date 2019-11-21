@@ -6,6 +6,7 @@
     "node": "10.15.3"
   },
   "dependencies": {
+    "mongo-gridfs": "^1.1.0",
     "mongoose-unique-validator": "^2.0.3"
   }
 }

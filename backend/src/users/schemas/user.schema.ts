@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-const uniqueValidator = require('mongoose-unique-validator');
+const uniqueValidator =  require('mongoose-unique-validator');
 
 export const UserSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },

@@ -1,13 +1,20 @@
-import { Controller, Get, Param, UseInterceptors, UploadedFile, Post } from '@nestjs/common';
-import { FileInterceptor, AnyFilesInterceptor } from '@nestjs/platform-express';
+import { Controller, Get, Param, UseInterceptors, UploadedFile, Post, Res } from '@nestjs/common';
+import { FileInterceptor, FileFieldsInterceptor } from '@nestjs/platform-express';
+import { FilesService } from './files.service';
+import { diskStorage } from 'multer';
+import { extname } from 'path';
+
+const fs = require('fs');
+
 
 
 @Controller('files')
 export class FilesController {
+    constructor(private readonly filesService: FilesService) {}
 
     @Get()
     findAllMemes(): string {
-        return 'All memes';
+        return 'all';
     }
 
     @Get(':from/:to')
@@ -15,11 +22,27 @@ export class FilesController {
         return `from ${from} to ${to}`;
     }
 
-    @Post('upload')
-    @UseInterceptors(AnyFilesInterceptor())
-    uploadFile(@UploadedFile() file) {
-        console.log(file);
-        return file;
+    @Post('create')
+    @UseInterceptors(FileInterceptor('file',
+    {
+      storage: diskStorage({
+        destination: './avatars', 
+        filename: (req, file, cb) => {
+        const randomName = 1;
+        return cb(null, `${randomName}${extname(file.originalname)}`)
+      }
+      })
     }
+  )
+  )
+    uploadImage(@UploadedFile() file, @Res() res) {
+        console.log(file);
+    }
+
+    @Get(':imgpath')
+    getImage(@Param('imgpath') img, @Res() res){
+        return res.sendFile(img, {root: './avatars'});
+    }
+
 
 }

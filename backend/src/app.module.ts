@@ -9,6 +9,7 @@ import { FilesModule } from './files/files.module';
 import * as rateLimit from 'express-rate-limit';
 
 
+
 const likesLimit = rateLimit({
   windowMs: 1000 * 60,
   max: 10,
@@ -18,7 +19,11 @@ const likesLimit = rateLimit({
 export const MongoConnection = MongooseModule.forRoot(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 
 @Module({
-  imports: [MongoConnection, UsersModule, FilesModule, CommentsModule],
+  imports: [MongoConnection,
+            UsersModule,
+            FilesModule,
+            CommentsModule,
+          ],
   controllers: [AppController],
   providers: [AppService],
 })
